@@ -16,7 +16,7 @@ jobs:
   build:
     env: 
       BUILD_CONFIG: Release
-      DOT_NET_VERSION: 7.O.x
+      DOT_NET_VERSION: 7.O
 
     runs-on: ubuntu-latest
 
