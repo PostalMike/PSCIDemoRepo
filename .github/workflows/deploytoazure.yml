@@ -29,10 +29,10 @@ jobs:
         dotnet-version: '${{ env.DOT_NET_VERSION }}'
     
     - name: Print Build Config
-      run: echo 'Build Config - $BUILD_CONFIG'
+      run: echo "Build Config - $BUILD_CONFIG"
       
     - name: Print Default Environment variable of person or app that initiated workflow
-      run: echo 'Workflow initiated by - $GITHUB_ACTOR'
+      run: echo "Workflow initiated by - $GITHUB_ACTOR"
         
     - name: Restore dependencies
       run: dotnet restore
