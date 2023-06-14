@@ -10,11 +10,7 @@ jobs:
   build:
 
     runs-on: ${{ matrix.os }}
-    #runs-on: ubuntu-latest We need to ref the matrix context. Will have 2 OS, 2 .Net versions
-    #we will get a failure for .net 3, since the os version is .net 7.
-    #all jobs would fail when the .net 3 version fails
-    #this property will let the other jobs run
-    #note, this is a property that can be used to emulate try catch
+
     continue-on-error: true
     
     strategy: 
