@@ -1,0 +1,45 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: Maxtrix Testing
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+
+    #runs-on: ubuntu-latest We need to ref the matrix context. Will have 2 OS, 2 .Net versions
+    runs-on: ${{ maxtrix.os }}
+    #we will get a failure for .net 3, since the os version is .net 7.
+    #all jobs would fail when the .net 3 version fails
+    #this property will let the other jobs run
+    #note, this is a property that can be used to emulate try catch
+    continue-on-error: true
+    
+    strategy: 
+      matrix:
+        on: [windows-latest, ubuntu-latest]
+        dot-net-version: [3.1.x, 7.0.x]
+        #this will exclude the .net 3 from running on linux because it will fail
+        #if we want to try another version on Linux, we could include this along with
+        #the 2 jobs using .Net 7 that we know are going to run
+        #exclude: #prevents the 3.1.x entirely ...
+        include: #let's us try an experiment ... can we run 3.1.x on Linux
+          - on: ubuntu-latest
+            dot-net-version: 3.1.x
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ maxtrix.dot-net-version }}
+        
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
