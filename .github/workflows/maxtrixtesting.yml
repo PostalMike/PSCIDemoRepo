@@ -9,8 +9,8 @@ on:
 jobs:
   build:
 
-    #runs-on: ubuntu-latest We need to ref the matrix context. Will have 2 OS, 2 .Net versions
     runs-on: ${{ maxtrix.os }}
+    #runs-on: ubuntu-latest We need to ref the matrix context. Will have 2 OS, 2 .Net versions
     #we will get a failure for .net 3, since the os version is .net 7.
     #all jobs would fail when the .net 3 version fails
     #this property will let the other jobs run
