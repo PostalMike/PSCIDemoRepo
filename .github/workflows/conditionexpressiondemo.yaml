@@ -16,15 +16,16 @@ jobs:
     steps:
     
       - name: checkout code if running on master branch
-        if: ${{ github.ref == 'refs/heads/master' }}
+        #if: ${{ github.ref == 'refs/heads/master' }}
+        if: ${{ github.ref == 'refs/heads/main' }}
         uses: actions/checkout@v2
         
       - name: YES was passed as workflow input
         if: github.event.inputs.failstep == 'yes'
-        run: echo "Value passed by workflow_dispatch is YES to fail workflow." 
+        run: echo "Value passed by workflow_dispatch is YES and will fail the workflow." 
 
       - name: NO was passed as workflow input
-        run: echo "Value passed by workflow_dispatch is NO to fail workflow." 
+        run: echo "Value passed by workflow_dispatch is NO and will not fail the workflow." 
         if: github.event.inputs.failstep == 'no'
       
       - name: Step that can be failed
@@ -37,15 +38,15 @@ jobs:
             exit 1
           fi
 
-      - name: Step in workflow
-        run: echo "Another step in the workflow" 
+      - name: Step in workflow prior to failure() check
+        run: echo "Step in the workflow prior to failure() check" 
 
       - name: This step only runs if there's a previous failure
         if: failure()
         run: echo "There has been a failure.  Perhaps send a notification." 
 
-      - name: Step in workflow
-        run: echo "Another step in the workflow" 
+      - name: Step in workflow after failure() check
+        run: echo "Step in the workflow after failure() check" 
           
       - name: Step that always runs
         if: always()
@@ -60,7 +61,7 @@ jobs:
     runs-on: ubuntu-latest
     
     needs: first-job
-    #if: always()
+
     steps:
       - name: Sample step in job
         run:  echo "Sample step output" 
