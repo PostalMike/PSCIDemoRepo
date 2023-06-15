@@ -8,9 +8,9 @@ on:
 jobs:
   build:
 
-    #runs-on: windows-latest #${{ matrix.os }}
+    runs-on: windows-latest #${{ matrix.os }}
     #there is exactly one space bar tap between runs-on: and ${{ -- have no idea where the unexpected character '' is at column 14 of this line.
-    runs-on: ${{ matrix.os }}
+    #runs-on: ${{ matrix.os }}
 
     continue-on-error: true
 
