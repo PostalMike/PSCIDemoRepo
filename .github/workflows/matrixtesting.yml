@@ -17,7 +17,8 @@ jobs:
     strategy:
       matrix:
         on: [windows-latest, ubuntu-latest]
-        dot-net-version: [3.1.x, 7.0.x]
+        #dot-net-version: [3.1.x, 7.0.x] #run with exclude: below
+        dot-net-version: [7.0.x] #run with include: below
         include:
           - on: ubuntu-latest
             dot-net-version: 3.1x
