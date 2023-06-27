@@ -62,7 +62,7 @@ jobs:
     
     needs: first-job
     
-    if: always()
+    #if: always()
     
     steps:
       - name: Sample step in job
