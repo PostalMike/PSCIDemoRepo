@@ -6,6 +6,9 @@ on:
 env:
   AZURE_WEBAPP_PACKAGE_PATH: '.'
   AZURE_WEBAPP_NAME: PSCIDemo
+  
+permissions:
+  id-token: write
 
 jobs:
   build:
@@ -32,10 +35,19 @@ jobs:
     - name: Publish
       run: dotnet publish -c Release -o '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp'
       
-    - name: Login to Azure Public Cloud
+    - name: 'Az CLI login'
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}  
+      
+    - name: OIDC Login to Azure Public Cloud
+      uses: azure/login@v1.4.0
+      with:
+        client-id: 09ffa00d-335c-4cc8-a247-9492e2746bbe
+        tenant-id: fa6f6191-1de3-46f9-9b00-9bd660d19073
+        subscription-id: f98953a3-376a-4e5f-adfc-c2b6ed874477
             
     - name: Deploy
       uses: Azure/webapps-deploy@v2
