@@ -5,7 +5,7 @@ on:
 
 env:
   AZURE_WEBAPP_PACKAGE_PATH: '.'
-  AZURE_WEBAPP_NAME: PSCIDemo
+  AZURE_WEBAPP_NAME: PSDeployDemoWebApp
   
 permissions:
   id-token: write
