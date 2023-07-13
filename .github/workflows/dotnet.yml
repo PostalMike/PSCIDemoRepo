@@ -4,8 +4,9 @@
 name: .NET
 
 on:
-  push:
-    branches: [ "master" ]
+# Commented out so that only pull requests will trigger the work flow
+#  push:
+#    branches: [ "master" ]
 
   pull_request:
     branches: [ "master" ]
