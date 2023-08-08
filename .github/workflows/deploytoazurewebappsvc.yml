@@ -4,12 +4,12 @@
 name: 'Deploy to Azure App Service'
 
 on:
-  #push:
-  #  branches: [ "master" ]
-  #pull_request:
-  #  branches: [ "master" ]
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
 
-  workflow_dispatch:
+  #workflow_dispatch:
 
 env:
   AZURE_WEBAPP_PUBLISH_PATH: '.'
@@ -36,5 +36,11 @@ jobs:
     - name: Publish
       run: dotnet publish -c Release -o '${{ env.AZURE_WEBAPP_PUBLISH_PATH }}/myapp'
 
-    #- name: Deploy
+    - name: Deploy
+      uses: Azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        slot-name: 'Development' 
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: '${{ env.AZURE_WEBAPP_PUBLISH_PATH }}/myapp'
         
