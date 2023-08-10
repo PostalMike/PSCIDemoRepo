@@ -1,0 +1,63 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+# this started as dotnet.yml / name of .Net. for earlier modules
+# in Configuring Multiple Jobs Using a Matrix name: and filename are now Matrix Testing and matrixtesting.yml respectively
+
+name: Matrix Testing
+
+on:
+# Earlier modules covered push: ... and pull_request: ...
+#  push:
+#    branches: [ "master" ]
+#  pull_request:
+#    branches: [ "master" ]
+# DevOps with GitHub and Azure: Implementing CI/CD with GitHub Actions, Exploring GitHub Actions Workflows, 
+# Configuring Multiple Jobs Using a Matrix will work with workflow_dispatch
+    workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: #ubuntu-latest # ubuntu-latest was used for the earlier parts of the course
+      # the matrix expression now has to be used
+      # 4 jobs will happen, 2 with windows, 2 with ubuntu-latest because there are 2 os's, 2 dotnet versions
+      ${{ matrix.os }}
+    
+    # the job was initially set for .net 7.0.x, so will fail for .net 3.1.x
+    # this makes sure that the failure of 3.1.x does not fail the remainder of the workflow
+    continue-on-error: true
+    
+    # The Strategy is part of using Matrix in which to define multiple jobs
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+        
+        # instructor showed how to use exclude, then removed this code to use include
+        #dot-net-version: [3.1.x, 7.0.x]
+        # since .net 3.1.x won't run on Linux and will fail, we can exclue it for the Linux os
+        #exclude:
+        #  - os: ubuntu-latest
+        #    dot-net-version: 3.1.x
+
+        # here, we can include 3.1.x to experiment with it, rather than the above method which will exclude it.
+        # this is the one the instructor chose to commit and run
+        dot-net-version: [7.0.x]
+        # since .net 3.1.x won't run on Linux and will fail, we can exclue it for the Linux os
+        include:
+          - os: ubuntu-latest
+            dot-net-version: 3.1.x
+            
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        #dotnet-version: 7.0.x #specific version used in earlier modules
+        # the matrix here will pull the dot net version parts
+        dotnet-version: ${{ matrix.dot-net-version }}
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
