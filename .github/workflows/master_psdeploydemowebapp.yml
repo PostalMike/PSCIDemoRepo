@@ -1,16 +1,14 @@
-# THERE IS NO CONTRIBUTOR ROLE IN AZURE NOW
-# THIS YAML WAS MADE JUST TO FOLLOW ALONG WITH THE CURRENT COURSE
-# A WORK AROUND IS BEING SOUGHT SO AS TO MAKE THIS YAML USEFUL
-
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
+
+# comment out on push so that updates to other workflows don't trigger this workflow.
 
 name: Build and deploy ASP.Net Core app to Azure Web App - PSDeployDemoWebApp
 
 on:
-  push:
-    branches:
-      - master
+  #push:
+  #  branches:
+  #    - master
   workflow_dispatch:
 
 jobs:
