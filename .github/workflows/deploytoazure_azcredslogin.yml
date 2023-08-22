@@ -1,7 +1,3 @@
-# THERE IS NO CONTRIBUTOR ROLE IN AZURE NOW
-# THIS YAML WAS MADE JUST TO FOLLOW ALONG WITH THE CURRENT COURSE
-# A WORK AROUND IS BEING SOUGHT SO AS TO MAKE THIS YAML USEFUL
-
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
@@ -13,6 +9,9 @@ on:
 env:
   AZURE_WEBAPP_PUBLISH_PATH: '.'
   AZURE_WEBAPP_NAME: psdeploydemowebapp
+
+permissions:
+  id-token: write
 
 jobs:
   build:
@@ -40,11 +39,10 @@ jobs:
       with:
         #LOSE CREDS, USE THE OTHER PARAMS BELOW IT
         #creds: ${{ secrets.AZURE_CREDENTIALS }}
-        #after quiet time get these ids from Azure
-        # there is no contributor role now, so this yaml doesn't work.
-         client-id: ''
-         tentant-id: ''
-         subscription-id: ''
+
+         client-id: 75272897-7e5e-4d25-953c-d40aa7fb7a0d
+         tentant-id: fa6f6191-1de3-46f9-9b00-9bd660d19073
+         subscription-id: f98953a3-376a-4e5f-adfc-c2b6ed874477
 
     - name: Deploy
       uses: Azure/webapps-deploy@v2
