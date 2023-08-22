@@ -8,7 +8,7 @@ on:
 
 env:
   AZURE_WEBAPP_PUBLISH_PATH: '.'
-  AZURE_WEBAPP_NAME: psdeploydemowebapp
+  AZURE_WEBAPP_NAME: PSDeployDemoWebApp
 
 permissions:
   id-token: write
