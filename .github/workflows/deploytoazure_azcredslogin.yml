@@ -38,7 +38,7 @@ jobs:
       uses: azure/login@v1.4.0
       with:
         client-id: 75272897-7e5e-4d25-953c-d40aa7fb7a0d
-        tentant-id: fa6f6191-1de3-46f9-9b00-9bd660d19073
+        tenant-id: fa6f6191-1de3-46f9-9b00-9bd660d19073
         subscription-id: f98953a3-376a-4e5f-adfc-c2b6ed874477
 
     - name: Deploy
