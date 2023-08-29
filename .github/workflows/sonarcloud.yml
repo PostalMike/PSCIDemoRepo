@@ -8,9 +8,7 @@ on:
 jobs:
   build:
     name: Build and analyze
-    runs-on: windows-latest
-    env:
-      PATH: \Clients\Durthaler%20Tech%20Services\Azure%20Training\CICD%20Git%20Hub%20Actions\Repos\PSCIDemoRepo\PSCIDemo
+    runs-on: windows-latest 
     steps:
       - name: Set up JDK 17
         uses: actions/setup-java@v3
@@ -39,7 +37,7 @@ jobs:
         run: |
           #New-Item -Path .\PSCIDemo\.sonar\scanner -ItemType Directory
           #dotnet tool update dotnet-sonarscanner --tool-path --file \PSCIDemo\.sonar\scanner
-          New-Item -Path ${{ env.PATH }}\.sonar\scanner -ItemType Directory
+          New-Item -Path \Clients\Durthaler%20Tech%20Services\Azure%20Training\CICD%20Git%20Hub%20Actions\Repos\PSCIDemoRepo\PSCIDemo\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
       - name: Build and analyze
         env:
@@ -47,6 +45,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          ${{ env.PATH }}\.sonar\scanner\dotnet-sonarscanner begin /k:"postalmike_pcsidemo" /o:"postalmike" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+          \Clients\Durthaler%20Tech%20Services\Azure%20Training\CICD%20Git%20Hub%20Actions\Repos\PSCIDemoRepo\PSCIDemo\.sonar\scanner\dotnet-sonarscanner begin /k:"postalmike_pcsidemo" /o:"postalmike" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build --configuration 'release'
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
