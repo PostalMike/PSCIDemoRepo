@@ -35,7 +35,7 @@ jobs:
         if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
         shell: powershell
         run: |
-          New-Item -Path --file \PSCIDemo\.sonar\scanner -ItemType Directory
+          New-Item -Path \PSCIDemo\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path --file \PSCIDemo\.sonar\scanner
       - name: Build and analyze
         env:
