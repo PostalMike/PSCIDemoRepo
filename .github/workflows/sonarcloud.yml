@@ -47,4 +47,5 @@ jobs:
         run: |
           \Clients\Durthaler%20Tech%20Services\Azure%20Training\CICD%20Git%20Hub%20Actions\Repos\PSCIDemoRepo\PSCIDemo\.sonar\scanner\dotnet-sonarscanner begin /k:"postalmike_pcsidemo" /o:"postalmike" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build --configuration 'release'
-          \Clients\Durthaler%20Tech%20Services\Azure%20Training\CICD%20Git%20Hub%20Actions\Repos\PSCIDemoRepo\PSCIDemo\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+          #\Clients\Durthaler%20Tech%20Services\Azure%20Training\CICD%20Git%20Hub%20Actions\Repos\PSCIDemoRepo\PSCIDemo\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
