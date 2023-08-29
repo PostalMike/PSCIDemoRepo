@@ -38,7 +38,7 @@ jobs:
           #New-Item -Path .\PSCIDemo\.sonar\scanner -ItemType Directory
           #dotnet tool update dotnet-sonarscanner --tool-path --file \PSCIDemo\.sonar\scanner
           New-Item -Path \Clients\Durthaler%20Tech%20Services\Azure%20Training\CICD%20Git%20Hub%20Actions\Repos\PSCIDemoRepo\PSCIDemo\.sonar\scanner -ItemType Directory
-          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+          dotnet tool update dotnet-sonarscanner --tool-path \Clients\Durthaler%20Tech%20Services\Azure%20Training\CICD%20Git%20Hub%20Actions\Repos\PSCIDemoRepo\PSCIDemo\.sonar\scanner
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
