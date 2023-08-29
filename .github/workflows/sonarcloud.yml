@@ -37,7 +37,7 @@ jobs:
         run: |
           #New-Item -Path .\PSCIDemo\.sonar\scanner -ItemType Directory
           #dotnet tool update dotnet-sonarscanner --tool-path --file \PSCIDemo\.sonar\scanner
-          New-Item -Path \PSCIDemoRepo\PSCIDemo\.sonar\scanner -ItemType Directory
+          New-Item -Path \Clients\Durthaler Tech Services\Azure Training\CICD Git Hub Actions\Repos\PSCIDemoRepo\PSCIDemo\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path --file .\.sonar\scanner
       - name: Build and analyze
         env:
