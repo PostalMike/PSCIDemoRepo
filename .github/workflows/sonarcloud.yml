@@ -1,4 +1,6 @@
 name: SonarCloud
+env:
+  PATH: '\Clients\Durthaler%20Tech%20Services\Azure%20Training\CICD%20Git%20Hub%20Actions\Repos\PSCIDemoRepo\PSCIDemo'
 on:
   push:
     branches:
@@ -9,8 +11,6 @@ jobs:
   build:
     name: Build and analyze
     runs-on: windows-latest
-    env:
-      PATH: '\Clients\Durthaler%20Tech%20Services\Azure%20Training\CICD%20Git%20Hub%20Actions\Repos\PSCIDemoRepo\PSCIDemo'
     steps:
       - name: Set up JDK 17
         uses: actions/setup-java@v3
