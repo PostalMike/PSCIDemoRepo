@@ -35,8 +35,8 @@ jobs:
         if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
         shell: powershell
         run: |
-          New-Item -Path \PSCIDemo\.sonar\scanner -ItemType Directory
-          dotnet tool update dotnet-sonarscanner --tool-path --file \PSCIDemo\.sonar\scanner
+          New-Item -Path .\PSCIDemoRepo\PSCIDemo\.sonar\scanner -ItemType Directory
+          dotnet tool update dotnet-sonarscanner --tool-path --file PSCIDemoRepo\PSCIDemo\.sonar\scanner
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
