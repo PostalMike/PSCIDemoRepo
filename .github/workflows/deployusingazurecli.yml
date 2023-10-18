@@ -1,6 +1,7 @@
 name: 'Deploy to Azure App Service Using Azure CLI'
 
 on:
+  push:
   workflow_dispatch:
 
 env:
